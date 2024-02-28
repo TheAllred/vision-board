@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        transform: translateY(10%);
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #000826;
+        font-family: Arial, sans-serif;
+        color: aliceblue;
+        background-size: cover;
+        background-position: center;
+      }
+      h2 {
+        margin: 20px 0;
+        transition: all 0.5s ease;
+        opacity: 1;
+        transform: translateX(0);
+        cursor: pointer;
+      }
+      h2:hover {
+        text-shadow: 0 0 5px #fff;
+      }
+      .content {
+        transition: all 0.5s ease;
+        opacity: 0;
+        transform: translateX(-300%);
+        display: flexbox;
+        justify-content: space-around;
+        align-items: center;
+      }
+      #backButton {
+        margin-top: 20px;
+      }
+      .topic-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: all 0.5s ease;
+        max-height: 5vw;
+      }
+      button {
+        background-color: #000826;
+        color: aliceblue;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 3rem;
+      }
+      img {
+        height: 30vw;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="backButton">My Vision Board</button>
+    <div class="wrapper">
+      <div class="topic-wrapper">
+        <h2 id="topic1">Faith</h2>
+        <div id="content1" class="content">
+          <ul>
+            <li><h3>Senior Mission</h3></li>
+            <li><h3>Temple Worker</h3></li>
+            <li><h3>Young Mens Advisor</h3></li>
+          </ul>
+          <img src="/images/temple.jpeg" alt="" />
+        </div>
+      </div>
+      <div class="topic-wrapper">
+        <h2 id="topic2">Family</h2>
+        <div id="content2" class="content">
+          <ul>
+            <li><h3>Dad</h3></li>
+            <li><h3>Fun Uncle</h3></li>
+            <li><h3>Brother</h3></li>
+            <li><h3>Grandfather</h3></li>
+          </ul>
+          <img src="/images/IMG_1367.jpg" alt="" />
+          <img src="/images/IMG_3033.jpg" alt="" />
+        </div>
+      </div>
+      <div class="topic-wrapper">
+        <h2 id="topic3">Career</h2>
+        <div id="content3" class="content">
+          <ul>
+            <li><h3>Senior Developer</h3></li>
+            <li><h3>Own Company</h3></li>
+          </ul>
+          <img src="/images/IMG_0938.jpeg" alt="" />
+        </div>
+      </div>
+      <div class="topic-wrapper">
+        <h2 id="topic4">Physical</h2>
+        <div id="content4" class="content">
+          <ul>
+            <li><h3>Gym</h3></li>
+            <li><h3>Pickleball</h3></li>
+            <li><h3>Volleyball</h3></li>
+            <li><h3>Hiking</h3></li>
+          </ul>
+          <img src="/images/1wheel.jpg" alt="" />
+          <img src="/images/hammock.jpg" alt="" />
+          <img src="images/Screenshot 2024-02-28 at 10.07.33 AM.png" alt="" />
+          <img src="images/Screenshot 2024-02-28 at 10.10.53 AM.png" alt="" />
+        </div>
+      </div>
+      <div class="topic-wrapper">
+        <h2 id="topic5">Social</h2>
+        <div id="content5" class="content">
+          <ul>
+            <li><h3>Dancing</h3></li>
+            <li><h3>Roller Skating</h3></li>
+          </ul>
+          <img src="/images/dancing.jpeg" alt="" />
+        </div>
+      </div>
+    </div>
+    <script>
+      const topics = Array.from(document.querySelectorAll("h2"));
+      const contents = Array.from(document.querySelectorAll(".content"));
+      const backButton = document.getElementById("backButton");
+
+      topics.forEach((topic, index) => {
+        topic.addEventListener("click", () => {
+          topics.forEach((t, i) => {
+            if (i !== index) {
+              t.style.opacity = "0";
+              t.style.transform = "translateX(-300%)";
+
+              contents[i].style.opacity = "0";
+              contents[i].style.transform = "translateX(-300%)";
+            } else {
+              setTimeout(() => {
+                contents[i].style.opacity = "1";
+                contents[i].style.transform = "translateX(0)";
+              }, 50);
+            }
+          });
+        });
+      });
+
+      backButton.addEventListener("click", () => {
+        topics.forEach((t) => {
+          t.style.opacity = "1";
+          t.style.transform = "translateX(0)";
+        });
+        contents.forEach((c) => {
+          c.style.opacity = "0";
+          c.style.transform = "translateX(-300%)";
+        });
+      });
+
+      var modal = document.getElementById("myModal");
+      var img = document.getElementById("img01");
+      var elements = ["dad", "funUncle", "brother", "grandfather"];
+
+      elements.forEach(function (element) {
+        var el = document.getElementById(element);
+        el.onclick = function () {
+          modal.style.display = "block";
+          img.src = "/images/" + element + ".jpg"; // Update this path to your images
+        };
+      });
+
+      var span = document.getElementsByClassName("close")[0];
+      span.onclick = function () {
+        modal.style.display = "none";
+      };
+    </script>
+  </body>
+</html>
